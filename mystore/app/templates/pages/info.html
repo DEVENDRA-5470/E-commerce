@@ -1,0 +1,35 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>mystore|info</title> {% endblock title %} 
+
+
+
+{% block info %}
+
+<div class="main_info">
+    <div class="info_row">
+        <div class="info_col">
+            <div class="info_card">
+                <h1>Opp's</h1>
+                <img src="{% get_static_prefix %}images\nocart2-removebg-preview.png" alt="">
+                <p>Hello Dear You have to login to add cart ! </p>
+                <strong>thank you for visiting... </strong>
+            </div>
+            
+                    <div class="cart_button info">
+                        <button class="red"><a href="{% url 'login' %}">Login</a></button>
+                        <button class="blue"><a href="{% url 'home' %}">Home</a></button>
+                        <button class="green"><a href="{% url 'signup' %}">Signup</a></button>
+                    </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock info %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

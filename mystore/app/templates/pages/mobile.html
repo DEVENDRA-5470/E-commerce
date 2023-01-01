@@ -1,0 +1,97 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>mystore|mobile-products</title> {% endblock title %} 
+
+
+
+{% block allproduct %}
+
+<div class="main_filter">
+    <div class="sub_filter">
+        <div class="filter_col">
+                <div class="mobiles">
+                    <h3>mobiles</h3>
+                    <ol>
+                        <li><a href="{% url 'mobile-item' 'redmi' %}">Redmi</a></li>
+                        <li><a href="{% url 'mobile-item' 'realme' %}">Realme</a></li>
+                        <li><a href="{% url 'mobile-item' 'samsung' %}">samsung</a></li>
+                        <li><a href="{% url 'mobile-item' 'below' %}">below 20000</a></li>
+                        <li><a href="{% url 'mobile-item' 'above' %}">above 20000</a></li>
+                        
+                     
+                    </ol>
+                </div>
+                <div class="shoes">
+                    <h3>shoes</h3>
+                    <ol>
+                        <li><a href="#">campus</a></li>
+                        <li><a href="#">reebok</a></li>
+                        <li><a href="#">nike</a></li>
+                        <li><a href="#">low to high</a></li>
+                        <li><a href="#">High to low</a></li>
+                    </ol></div>
+                <div class="womens">
+                    <h3>womens</h3>
+                    <ol>
+                        <li><a href="#">nyka</a></li>
+                        <li><a href="#">armani</a></li>
+                        <li><a href="#">gucci</a></li>
+                        <li><a href="#">low to high</a></li>
+                        <li><a href="#">High to low</a></li>
+                    </ol>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- carousle -->
+<section>
+    <div class="item_cat">
+        <h1>Electronics Items</h1>
+    </div>
+    <hr>
+    <div class="owl-carousel owl-theme" id="slider1">
+        {% for product in mobiles %}
+        <div class="item">
+            <a href="{% url 'product-detail' product.id %}">
+                <div class="product-card show" >
+                    {% if product.discounted_price > 19000.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{product.product_image.url}}" alt="" >
+                    <h2>{{product.title}}</h2>
+                    <p>{{product.description}}</p>
+                    <h4 class="price">Rs. {{product.discounted_price}}</h4>
+                    {% if product.discounted_price > 17799.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    <span class="price_cut"> <strike>{{product.selling_price}}</strike></span>
+                        <br>
+                    {% else %}
+                        <span class="no_offers">no offers</span>
+                        {% endif %}
+                    {% comment %} <p class="offer">Off:56%</p></span> {% endcomment %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+</section>
+
+{% endblock allproduct %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}
+

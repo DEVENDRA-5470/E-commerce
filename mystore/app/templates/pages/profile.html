@@ -1,0 +1,64 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>Home</title> {% endblock title %} 
+
+{% block content %}
+<h1>profile page</h1>
+
+<a  href="{% url 'passchange' %}"> <span class="green" ></span> change password</a>
+<div class="main_form" >
+    <div class="form_box" >
+        <div class="form_col" >
+           {% if messages %}
+           {% for message in messages %}
+            
+                 <span {% if message.tags %} class="{{message.tags}}" {% endif %} >{{message}} </span>
+                    
+            
+           {% endfor %}
+           {% else %}
+           {% endif %}
+            <div class="dot"></div>
+            {% comment %} <div class="logoimg">
+                <img src="{% get_static_prefix %}images/store-removebg-preview.png" width="60px" alt="mylogo">
+                
+            </div> {% endcomment %}
+        
+            <!-- <div class="dot"></div>
+            <div class="dot"></div> -->
+           
+          <h2>Login 👍<p class="best">for best experince</p></h2>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {% for forms in form %}
+                <div class="box">
+                    <p class="user">{{forms.label_tag}}</p>
+                    {{forms}}
+                    <small>{{forms.errors}}</small>
+                </div>
+
+                {% comment %} <div class="box">
+                    <p class="user">Confirm Password:</p>
+                    <input type="password"  id="pass2" name="pass1" placeholder="confirm password"  >
+                </div> {% endcomment %}
+                {% endfor %}
+                <div class="box btn"  >
+                    <input type="submit" value="Save"  >
+                </div>
+            </form>
+            <a  href="{% url 'signup' %}"> <span class="green" >New User?</span> signup</a>
+            {% if form.non_field_errors %}
+            {% for error in non_field_errors %}
+            <p>{{error}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

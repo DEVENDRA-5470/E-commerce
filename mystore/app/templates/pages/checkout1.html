@@ -1,0 +1,59 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>My store | checkout</title> {% endblock title %} 
+
+{% block content %}
+<div class="checkout">
+    <div class="sub_check">
+        <div class="check_col">
+            <h2>Order summary</h2>
+            <hr>
+            {% for item in cart_item %}
+            <div class="check_pro">
+                <h3>{{forloop.counter}}. <span>{{item.product.title}}</span></h3>
+                <p> Rs.{{item.product.discounted_price}}0</p>
+                <p>Quantity: <span>{{item.quantity}}</span></p>
+                <p> Total Rs.{{item.total_amt}}0</p>
+            </div>
+            {% endfor %}
+            
+            <h2 class="amt">Total (MRP): Rs.{{totalamount}}0</h2>
+            <div class="term">
+                <strong>term and conditions:</strong>
+               <p> Lorem ipsum dolor sit amet consectetbus qui fugit labore blanditiis accusantium quos dolorem suscipit laboriosam doora sunt? Ea dolores nobis rem aliquam. Possimus?</p>
+            </div>
+        </div>
+        <div class="check_col">
+          
+            <h2> select shipping address</h2>
+            <hr>
+            <form action="/payment">
+            {% for ad in add %}
+                <div class="check_add">
+                    <h3>{{ad.name}}</h3>
+                    <p>{{ad.city}},{{ad.state}} - {{ad.zipcode}}</p>
+                    <p>Mob: {{ad.mob}}</p>
+                    <p>{{request.user.email}}</p>
+                </div>
+                <br>
+
+                <input type="radio" name="cus-id" id="cus-id{{forloop.counter}}" value="{{ad.id}}"><strong>Address{{forloop.counter}}</strong><br>
+                
+                {% endfor %}
+                <button type="submit">Confirm</button>
+                <hr>
+            </form>
+                <div>
+                    <ul>
+                
+                        <li>Lorem iplaudantium odio ut, hic itaque sunt eos vitae animi tempore deserunt accusantium quo sit optio! Fuga, necessitatibus facilis!</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. At numquam delectus, beatae laudantium od! Fuga, necessitatibus facilis!</li>
+                        <li>Lorem ipsumquam delectus, beatae laudantium odio ut, hic itaque sunt eos vitae animi tempore deserunt accusantium quo sit optio! Fuga, necessitatibus facilis!</li>
+                    </ul>
+                 </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}

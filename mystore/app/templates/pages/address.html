@@ -1,0 +1,77 @@
+{% extends 'pages/index.html' %} {% load static %} {% block title %}<title>
+  Address
+</title>
+{% endblock title %} {% block content %}
+<h2 class="profile">profile</h2>
+<div class="cus_div">
+  <div class="cus_row">
+    <div class="u_pro">
+      <p class="PRO_img">
+        <img
+          src="{% get_static_prefix %}images\sign-up-member-icon-isolated-orange-round-button-abstract-illustration-sign-up-member-icon-orange-round-button-104804549-removebg-preview (1).png"
+          width="50px"
+          alt=""
+        />
+      </p>
+      <h1 class="wel">Welcome <span>{{request.user|capfirst}}</span></h1>
+      {% if messages %} {% for message in messages %}
+
+      <h3 {% if message.tags %} class="{{message.tags}}" {% endif %}>
+        {{message}}
+      </h3>
+
+      {% endfor %} {% else %} {% endif %}
+
+      <p class="wel_add"><a href="{% url 'address' %}">Address</a></p>
+      <p class="wel_add"><a href="{% url 'order' %}">My Orders</a></p>
+      <p class="wel_add"><a href="{% url 'profile' %}">Profile</a></p>
+      <div class="cart_button info">
+        <button class="red"><a href="{% url 'login' %}">Log Out</a></button>
+      </div>
+      <a href="{% url 'passchange' %}">
+        <span class="green"></span> change password</a
+      >
+    </div>
+
+    <div class="main_form">
+      <div class="form_box cus">
+        <div class="form_col">
+          <div class="main_add">
+            <div class="add_row">
+              {% for add in address %}
+              <div class="add_col1">
+                <h2>Address {{forloop.counter}}</h2>
+                <div class="add_pro">
+                  <p>id: {{add.id}}</p>
+
+                  <p>Name: {{add.name}}</p>
+
+                  <p>mobile: {{add.mob}}</p>
+
+                  <p>city: {{add.city}}</p>
+
+                  <p>Pin Code: {{add.zipcode}}</p>
+
+                  <p>state:{{add.state}}</p>
+                </div>
+              </div>
+
+              {% endfor %}
+            </div>
+          </div>
+          {% comment %}
+          <a href="{% url 'update'  %}">
+            <span class="green"></span> Update Address</a
+          >
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block newfooter %}
+<div class="new_footer">
+  <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra ||</h4>
+</div>
+{% endblock newfooter %}

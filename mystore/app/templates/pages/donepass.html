@@ -1,0 +1,24 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>Done password</title> {% endblock title %} 
+
+{% block content %}
+<div class="done">
+<h2 class="donepass">Your password has been change successfully <br>
+    <p class="ok"><span>✔</span></p>
+</h2>
+<div class="cart_button info">
+    <button class="red"><a href="{% url 'login' %}">Login</a></button>
+    <button class="blue"><a href="{% url 'home' %}">Home</a></button>
+    <button class="green"><a href="{% url 'signup' %}">Signup</a></button>
+</div>
+
+
+</div>
+{% endblock content %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

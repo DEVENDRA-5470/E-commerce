@@ -1,0 +1,136 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>Mystore | recents</title> {% endblock title %} 
+
+{% block allproduct %}
+<div class="my_cart">
+    <a href="{% url 'showcart' %}">My Cart</a>
+    <a href="{% url 'recent_search' %}">Recently Searched</a>
+  </div>
+<!-- carousle -->
+<section>
+    <div class="item_cat" >
+        <h1 class="removebg">Electronics Items</h1>
+    </div>
+    <hr>
+    <div class="owl-carousel owl-theme" id="slider1">
+        {% for e in elec %}
+        <div class="item">
+            <a href="{% url 'product-detail' e.id %}">
+                <div class="product-card" >
+                    {% if e.discounted_price > 19000.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{e.product_image.url}}" alt="" >
+                    <h2>{{e.title}}</h2>
+                    <p>{{e.description}}</p>
+                    <h4 class="price">Rs. {{e.discounted_price}}</h4>
+                    {% if e.discounted_price > 17799.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    <span class="price_cut"> <strike> Rs.1399</strike></span>
+                        <br>
+                    {% else %}
+                        <span class="no_offers">no offers</span>
+                        {% endif %}
+                    {% comment %} <p class="offer">Off:56%</p></span> {% endcomment %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+</section>
+
+<section  >
+    <div class="item_cat">
+        <h1 class="removebg">sports Items</h1>
+    </div>
+    <hr>
+    <div class="owl-carousel owl-theme" id="slider2">
+        {% for s in sports %}
+        <div class="item">
+            <a href="{% url 'product-detail' s.id %}">
+                <div class="product-card" >
+                    {% if s.discounted_price > 900.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{s.product_image.url}}" alt="" >
+                    <h2>{{s.title}}</h2>
+                    <p>{{s.description}}</p>
+                    <h4 class="price">Rs. {{s.discounted_price}}</h4>
+                    {% if s.discounted_price > 900.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    {% else %}
+                    <span  class="no_offers">no offers</span>
+                    {% endif %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+    
+</section>
+
+
+<section  >
+    <div class="item_cat">
+        <h1 class="removebg">Womens Items</h1>
+    </div>
+    <hr>
+    
+    <div class="owl-carousel owl-theme" id="slider3" >
+        {% for w in womens %}
+        
+        <div class="item" >
+            <a href="{% url 'product-detail' w.id %}">
+                <div class="product-card" >
+                    {% if w.discounted_price < 1900.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{w.product_image.url}}" alt="" >
+                    <h2>{{w.title}}</h2>
+                    <p>{{w.description|truncatewords:5}}</p>
+                    <h4 class="price">Rs. {{w.discounted_price}}</h4>
+                    {% if w.discounted_price > 199.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    <span class="price_cut"> <strike> Rs.1399</strike></span>
+                    {% else %}
+                    <span  class="no_offers">no offers</span>
+                    {% endif %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    
+    </div>
+    
+</section>
+{% endblock allproduct %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

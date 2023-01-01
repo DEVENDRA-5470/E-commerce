@@ -1,0 +1,57 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>password change</title> {% endblock title %} 
+
+{% block content %}
+ <div class="main_form" >
+    <div class="form_box" >
+        <div class="form_col" >
+           {% if messages %}
+           {% for message in messages %}
+            
+                 <span {% if message.tags %} class="{{message.tags}}" {% endif %} >{{message}} </span>
+                    
+            
+           {% endfor %}
+           {% else %}
+           {% endif %}
+            <div class="dot"></div>
+            {% comment %} <div class="logoimg">
+                <img src="{% get_static_prefix %}images/store-removebg-preview.png" width="60px" alt="mylogo">
+                
+            </div> {% endcomment %}
+        
+             <div class="dot"></div>
+            <div class="dot"></div> -->
+           
+           <h2>Create new password<p class="best"></p></h2>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {% for forms in form %}
+                <div class="box">
+                    <p class="user">{{forms.label_tag}}</p>
+                    {{forms}}
+                    <small>{{forms.errors}}</small>
+                </div>
+                {% endfor %}
+                <div class="box btn"  >
+                    <input type="submit" value="Save"  >
+                </div>
+            </form>
+            <a  href="{% url 'login' %}"> <span class="green" >Existing User?</span>Login</a>
+            {% if form.non_field_errors %}
+            {% for error in non_field_errors %}
+            <p>{{error}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div> 
+
+{% endblock content%}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

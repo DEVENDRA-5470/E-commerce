@@ -1,0 +1,42 @@
+{% extends 'pages/index.html' %} {% load static %} {% block title %}<title>
+  My store | Orders
+</title>
+{% endblock title %} {% block content %}
+<div class="checkout">
+  <div class="sub_check">
+    <div class="check_col">
+      <h2>Your Order</h2>
+      <h2>{{request.user}}</h2>
+      <hr />
+      <div
+        class="check_pro"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          width: 100%;
+        "
+      >
+        {% for op in placed_order %}
+        <img src="{{op.product.product_image.url}}" alt="" />
+        <div>
+          <p>Product: {{op.product.title}}0</p>
+          <p>Quantity : <span>{{op.quantity}}</span></p>
+          <p>Total Rs.{{Op.total_cost}}</p>
+          <p>Order status.{{Op.status}}</p>
+          {% if op.status == 'Accepted' %}
+          <strong> Accepted </strong>
+          {% elif op.status == 'Packed' %}
+          <strong> Packed </strong>
+          {% elif op.status == 'On The Way' %}
+          <strong> Ready to Deleverd </strong>
+          {% elif op.status == 'Deleverd' %}
+          <strong> Deleverd ✔</strong>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINKS STYLING FILES -->
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    <link rel="stylesheet" href="{% get_static_prefix%}css/index.css">
+    
+
+
+    {% block title %}<title>mystore</title>{% endblock title %}
+</head>
+<style>
+    ::-webkit-scrollbar{
+        display: none;
+    }
+</style>
+<body >
+
+    
+
+    <header>
+
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div>
+            <div class="logoimg">
+                <img src="{% get_static_prefix %}images/store-removebg-preview.png" alt="mylogo">
+                <span class="logo">MYstore.COM</span>
+            </div>
+        </div>
+
+        <div class="search_box">
+            <input type="text" placeholder="&#x26B2;  Search brands,items..."  id="search" value="testin">
+            <button>Search</button>
+        </div>
+
+        <div class="nav_div">
+            <div class="nav_logo">
+                <h3>MYstore.COM</h3>
+                <span class="close">&#10539;</span>
+            </div>
+            
+            <ul>
+                {% if user.is_authenticated %}
+                
+                <li><a id="profile" href="{% url 'profile' %}"><img src="{% get_static_prefix %}images\sign-up-member-icon-isolated-orange-round-button-abstract-illustration-sign-up-member-icon-orange-round-button-104804549-removebg-preview (1).png" width="40px" alt=""></a><p><strong>{{ request.user.username|capfirst}} </strong></p></li>
+                <li><a href="{% url 'showcart' %}"><img src="{% get_static_prefix %}images\cart-5590712-4652404.webp" width="40px" alt=""></a><p>Cart{{c.quantity}}</p></li>
+                {% else %}
+                <li><a id="signup" href="{% url 'signup' %}"><img src="{% get_static_prefix %}images\sign-up-member-icon-isolated-orange-round-button-abstract-illustration-sign-up-member-icon-orange-round-button-104804549-removebg-preview (1).png" width="40px" alt=""></a><p>Sign up</p></li>
+                <li><a href="{% url 'showcart' %}"><img src="{% get_static_prefix %}images\cart-5590712-4652404.webp" width="40px" alt=""></a><p>Cart</p></li>
+                {% endif %}
+                <li><a id="home" href="{% url 'home' %}"><img src="{% get_static_prefix %}images\homeimg-removebg-preview.png" width="35x" alt=""></a><p>Home</p></li> 
+              </ul>
+        </div>
+    </header>
+    
+    {% block cat %}
+    <div class="cat_bar">
+        <ul>
+            <li><a href="{% url 'mobile' %}">Electronics/all mobiles</a> </li>
+            <li><a href="#">shoes</a> </li>
+            <li><a href="#">Beauty</a></li>
+            <li><a href="#">women</a></li>
+            <li><a href="#">sport</a></li>
+            <li><a href="#">offers</a></li>
+
+        </ul>
+    </div>
+    {% endblock cat %}
+
+
+
+   
+    {% block popform %}{% endblock popform %}
+    {% block template %}{% endblock template %}
+    {% block banner %}{% endblock banner %}
+    {% block livesale %}{% endblock livesale %}
+    {% block product-detail %}{% endblock product-detail %}
+    {% block allproduct %}{% endblock allproduct %}
+    {% block content %}{% endblock content %}
+    {% block info %}{% endblock info %}
+    
+
+    {% block mainfooter %}{% endblock mainfooter %}
+
+    {% block newfooter %}{% endblock newfooter %}
+
+
+
+
+   <!-- LINKS FOR JS FILE -->
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+   <script src="{% get_static_prefix %}js/index.js"></script>
+   
+   
+   
+ 
+
+</body>
+</html>

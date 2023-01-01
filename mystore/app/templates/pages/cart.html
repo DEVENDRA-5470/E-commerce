@@ -1,0 +1,93 @@
+{% extends 'pages/index.html' %} 
+{% load static %} 
+{% block title %}<title>MYstore | Cart</title>{% endblock title %}
+
+{% block content %}
+  <div class="my_cart">
+    <a href="">My Cart</a>
+    <a href="{% url 'recent_search' %}">Go to shop</a>
+  </div>
+<div class="main_cart_div">
+  <div class="left cart_page">
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+      </tr>
+      {% for c in cart %}
+      
+      <tr class="cart1">
+        <td >
+       
+          <div class="cart_det">
+            <img src="{{c.product.product_image.url}}" alt="" />
+            <div class="cart_con">
+              <p></p>
+              <h3>{{c.product.title}}</h3>
+              <h3>{{c.product.description}}</h3>
+              <strike>{{c.product.selling_price}}</strike>
+              <br />
+
+              <button class="remove" pid="{{c.product.id}}">Remove</button>
+            </div>
+          </div>
+        </td>
+        
+        
+        
+    
+        <td class="quantity">
+          <button class="minus-cart" pid="{{c.product.id}}">-</button>
+          <h3 id="quantity">{{c.quantity}}</h3>
+          <button  class="plus-cart"  pid="{{c.product.id}}">+</button>
+         
+        </td>
+
+        <td><h2>rs.{{c.product.discounted_price}}0</h2></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <div class="total" >
+      <table>
+        <tr>
+          <td>
+            <h3>
+              <hr />
+              subtotal
+            </h3>
+          </td>
+          <td>
+            <hr />
+            Rs.<strong id="amount">{{amount}}</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr />
+            <h3>shipping Amount</h3>
+          </td>
+          <td>
+            <hr />
+            rs.{{shipping_charge}}0
+          </td>
+        </tr>
+        <tr style="background-color: rgb(252, 82, 30)">
+          <td><h2>Total</h2></td>
+
+          <td><h2 id="totalamount">{{totalamount}}0</h2></td>
+        </tr>
+        <tr>
+          <!-- <td>Confirm</td> -->
+          <td><button class="place_order"><a href="{% url 'check-out' %}">Order Now</a></button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

@@ -1,0 +1,285 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}<title>mystore|Home</title> {% endblock title %} 
+
+{% block template %}
+<section>
+</section>
+{% endblock template %}
+
+
+
+<!-- start of banner -->
+{% block banner %}
+<div class="main" style="position: relative;">
+    
+    <div class="slider">
+        <div class="caption"></div>
+        <img src="{% get_static_prefix %}images\5b80a7ae8f6eb_thumb900.webp" alt="">
+    </div>
+    <div class="slider">
+        <div class="caption"></div>
+        <img src="{% get_static_prefix %}images\innerbanner.jpg" alt="">
+    </div>
+    <div class="slider">
+        <div class="caption"></h1></div>
+        <img src="{% get_static_prefix %}images\iphone_x-xs-11_pro___1_2x_4x.webp" alt="">
+    </div>
+    <div class="slider">
+        <div class="caption"></h1></div>
+        <img src="{% get_static_prefix %}images\nike_dribbble_4x.webp" alt="">
+    </div>
+    <div class="slider">
+        <div class="caption"></h1></div>
+        <img src="{% get_static_prefix %}images\iphone_x-xs-11_pro___1_2x_4x.webp" alt="">
+    </div>
+    
+    
+    <span onclick="control(-1)" class=" arrow prev">&#10094;</span>
+    <span onclick="control(1)" class=" arrow next">&#10095;</span>
+</div>
+{% endblock banner %}
+<!-- end of banner -->
+
+
+<!-- livsale start -->
+{% block livesale %}
+<section>
+    <div class="livesale">
+        <div class="sale_row">
+            <div class="sale_col">
+                        <div class="upper">
+                            <h1>Welcome to MYstore.COM</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Quidem, doloribus ducimus voluptatum deserunt dolores reiciendis placeat corrupti <br>tempora illum a tempore dolore enim quam dolor neque inventore <br>laudantium sunt recusandae.</p>
+                            <button>SHOP NOW</button>
+                        </div>
+                        <img src="{% get_static_prefix %}images\student-849819.jpg" alt="">
+               
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock livesale %}
+<!-- livsale end -->
+
+
+
+{% block content %}
+<!-- pop start -->
+{% block popform %}
+<div class="window">
+    <div class="main_form" >
+        <div class="form_box" >
+            <div class="form_col" >
+                <h3  class="close" onclick="close1()">&#x292C;</h3>
+               
+                <div class="dot"> <strong style="padding: 8px;">mystore.com</strong></div>
+                <!-- <div class="dot"></div>
+                <div class="dot"></div> -->
+               
+              <h2>Create account here <p>for best experince</p></h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <!-- <div class="box">
+                        <p class="user">Username: </p>
+                        <input type="text" id="username" name="username" placeholder="username" autofocus>
+                    </div>
+    
+                    <div class="box">
+                        <p class="user">Email Address:</p>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" autofocus >
+                    </div>
+    
+                    
+                    <div class="box">
+                        <p class="user">Password:</p>
+                        <input type="password" id="pass1" name="pass1" placeholder="Enter password" autofocus >
+                    </div>
+                    <div class="box">
+                        <p class="user">confirm Password:</p>
+                        <input type="password"  id="pass2" name="pass2" placeholder="confirm password" autofocus >
+                    </div>-->
+                    <div class="box btn"  >
+                        <button style="background-color: blue ;width: 100%;padding:10px ; border: 1px white solid;"><a style="text-decoration: none; color:white" href="{% url 'signup' %}">Create</a></button>
+                    </div> 
+                </form>
+            <a  href="{% url 'login' %}"> <span class="green">Existing User?</span> Login</a>
+
+            </div>
+        </div>
+    </div>
+    
+</div> 
+{% endblock popform %}
+<!-- popend -->
+{% endblock content %}
+
+
+
+{% block allproduct %}
+<!-- carousle -->
+<section>
+    <div class="item_cat">
+        <h1>Electronics Items</h1>
+    </div>
+    <hr>
+    <div class="owl-carousel owl-theme " id="slider1">
+        {% for e in elec %}
+        <div class="item ">
+            <a href="{% url 'product-detail' e.id %}">
+                <div class="product-card show" >
+                    {% if e.discounted_price > 19000.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{e.product_image.url}}" alt="" >
+                    <h2>{{e.title}}</h2>
+                    <p>{{e.description}}</p>
+                    <h4 class="price">Rs. {{e.discounted_price}}</h4>
+                    {% if e.discounted_price > 17799.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    <span class="price_cut"> <strike> Rs.1399</strike></span>
+                        <br>
+                    {% else %}
+                        <span class="no_offers">no offers</span>
+                        {% endif %}
+                    {% comment %} <p class="offer">Off:56%</p></span> {% endcomment %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+</section>
+
+<section  >
+    <div class="item_cat">
+        <h1>sports Items</h1>
+    </div>
+    <hr>
+    <div class="owl-carousel owl-theme" id="slider2">
+        {% for s in sports %}
+        <div class="item">
+            <a href="{% url 'product-detail' s.id %}">
+                <div class="product-card show" >
+                    {% if s.discounted_price > 900.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{s.product_image.url}}" alt="" >
+                    <h2>{{s.title}}</h2>
+                    <p>{{s.description}}</p>
+                    <h4 class="price">Rs. {{s.discounted_price}}</h4>
+                    {% if s.discounted_price > 900.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    {% else %}
+                    <span  class="no_offers">no offers</span>
+                    {% endif %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+    
+</section>
+
+
+<section  >
+    <div class="item_cat">
+        <h1>Womens Items</h1>
+    </div>
+    <hr>
+    
+    <div class="owl-carousel owl-theme" id="slider3" >
+        {% for w in womens %}
+        
+        <div class="item" >
+            <a href="{% url 'product-detail' w.id %}">
+                <div class="product-card show" >
+                    {% if w.discounted_price < 1900.0 %}
+                    <p class="hurry_up"> Hurry Up ! </p>
+                    {% else %}
+                    <p class="best_seller"><span>Best Seller </span></p>
+                    {% endif %}
+                    <img src="{{w.product_image.url}}" alt="" >
+                    <h2>{{w.title}}</h2>
+                    <p>{{w.description|truncatewords:5}}</p>
+                    <h4 class="price">Rs. {{w.discounted_price}}</h4>
+                    {% if w.discounted_price > 199.0 %}
+                    <p class="offer">Off:56%</p></span>
+                    <span class="price_cut"> <strike> Rs.1399</strike></span>
+                    {% else %}
+                    <span  class="no_offers">no offers</span>
+                    {% endif %}
+                    <div>
+                        <button>Add To Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    
+    </div>
+    
+</section>
+{% endblock allproduct %}
+
+{% block mainfooter %}
+<section>
+<div class="main_footer">
+    <div class="footer_row">
+        <div class="footer_col">
+            <h1 class="h1bg">MYstore.COM</h1>
+            <div>
+                
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus ad possimus consequuntur exercitationem. Corrupti magni deserunt magnam voluptatibus, aut quidem unde molestias ipsam iure natus vitae consectetur debitis id itaque.</p>
+            </div>
+        </div>
+        <div class="footer_col">
+            <h1>MYstore.COM</h1>
+           
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus ad possimus consequuntur exercitationem. Corrupti magni deserunt magnam voluptatibus, aut quidem unde molestias ipsam iure natus vitae consectetur debitis id itaque.</p>
+            
+        </div>
+        <div class="footer_col">
+            <h1>Mail Us</h1>
+            <hr>
+            <div>
+               
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus ad possimus consequuntur exercitationem. Corrupti magni deserunt magnam voluptatibus, aut quidem unde molestias ipsam iure natus vitae consectetur debitis id itaque.</p>
+            </div>
+        </div>
+     
+        
+    </div>
+</div>
+   
+    
+    
+</section>
+{% endblock mainfooter %}
+
+
+</div>
+
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}

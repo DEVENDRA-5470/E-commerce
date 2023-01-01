@@ -1,0 +1,87 @@
+{% extends 'pages/index.html' %} 
+{% load static %} 
+
+{% block title%}<title>signup</title>{% endblock title %} {% block content %}
+
+<div class="main_form">
+  <div class="form_box">
+    <div class="form_col">
+      {% if messages %} {% for message in messages %} <br />
+
+      <span {% if message.tags %} class="{{message.tags}}" {% endif %}
+        >{{message}}
+      </span>
+      {% endfor %} {% endif %}
+      <div class="dot">
+        <div class="logoimg">
+          <img
+            src="{% get_static_prefix %}images/store-removebg-preview.png"
+            width="60px"
+            alt="mylogo"
+          />
+        </div>
+      </div>
+      <!-- <div class="dot"></div>
+            <div class="dot"></div> -->
+
+      <h2>Create account here</h2>
+      <form action="" method="post" onsubmit="return myform()" novalidate>
+        {% csrf_token %}
+        <div class="box ">
+          <p class="user">Username:</p>
+          <input class="b" oninput="fun()" type="text"  id="username" name="username" placeholder="username" /><br>
+          <small id="max_char">. Max.5 char..!</small>
+        </div>
+        <div class="box">
+          <p class="user">First name:</p>
+          <input
+            type="text"
+            id="fname"
+            name="fname"
+            placeholder="Enter first name"
+          >
+        </div>
+
+        <div class="box">
+          <p class="user">Email Address:</p>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter Email"
+          >
+        </div>
+
+        <div class="box">
+          <p class="user">Password:</p>
+          <input
+            type="password"
+            id="pass1"
+            name="password1"
+            placeholder="Enter password"
+          >
+        </div>
+       <div class="box">
+          <p class="user">confirm Password:</p>
+          <input
+            type="password"
+            id="pass2"
+            name="password2"
+            placeholder="confirm password"
+          />
+        </div> 
+        <div class="box btn">
+          <input type="submit" value="Sign Up" >
+        </div>
+      </form>
+      <a href="{% url 'login' %}"><span class="green" style="color: green">Existing User?</span> Login</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+{% block newfooter %}
+<div class="new_footer">
+    <h4 class="foot">Copyright &#xA9; 2022 Developed By Devendra || </h4>
+</div>
+{% endblock newfooter %}
