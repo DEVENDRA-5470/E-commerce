@@ -1,4 +1,4 @@
-E-commerce Platform
+<h1>E-commerce Platform</h1>
 Welcome to our E-commerce Platform, a powerful and scalable Django project designed to facilitate online commerce. This platform offers a feature-rich environment for businesses to showcase and sell their products online. Dive into a world of e-commerce excellence with our comprehensive solution.
 
 Key Features:
@@ -28,4 +28,4 @@ Price Range Filters: Set your budget by using price range filters to find produc
 
 Rating Filters: Discover top-rated products by applying rating filters based on customer reviews.
 
-Brand Filters: Explore products from your favorite brands with our brand-specific filters.<h1>Dev</h1>
+Brand Filters: Explore products from your favorite brands with our brand-specific filters
